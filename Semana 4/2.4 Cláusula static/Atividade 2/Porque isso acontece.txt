@@ -1,0 +1,10 @@
+Acontece pois quando um método é declarado como estatico, ele pertence a classe X, se um obejeto quiser atualizar este campo estatico ele pode e será atualizado para todos os objetos.
+
+Ex: L1,L2,L3
+public static Contador;
+
+O contador é == 3, pois temos 3 objetos {L1,L2,L3};
+
+L1.SetContador(1000);
+
+Agora o contador passou a ser 1000.

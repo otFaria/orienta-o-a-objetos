@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Scanner;
+
 public class Ponto{
    private double X;
    private double Y;
@@ -32,6 +34,18 @@ public class Ponto{
        
        return Distancia;
     }
+   
+   public void Preencher(){
+       Scanner ler = new Scanner (System.in);
+        
+        
+        System.out.print("X: ");
+        X = ler.nextDouble();
+        
+        System.out.print("Y: ");
+        Y = ler.nextDouble();
+            
+        }
    
    @Override
    public String toString(){

@@ -59,6 +59,7 @@ public class Triangulo {
     public boolean PerimetroDoTriangulo() {
 
         double Perimetro = 0.0;
+        
         if(VerificaColinear()){
             Perimetro = pontos[0].DistanciaEntrePontos(pontos[1]) + pontos[1].DistanciaEntrePontos(pontos[2]) + pontos[2].DistanciaEntrePontos(pontos[0]);
             System.out.println("O perimetro do triangulo eh: " + Perimetro);
@@ -67,20 +68,24 @@ public class Triangulo {
             System.out.println("Nao é um triangulo.");
             return false;
         }
+        
     }
 
     public String Tipo() {
+        if(!VerificaColinear()){
+            if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
+                return "O tringulo e equilatero.";
 
-        if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
-            return "O tringulo e equilatero.";
-            
-        } else if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) || pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2]) || pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
-            return "Eh Isosceles";
-            
-        }else if (pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[0].DistanciaEntrePontos(pontos[2])) {
-            return "Eh Escaleno";
+            } else if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) || pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2]) || pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
+                return "Eh Isosceles";
+
+            }else if (pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[0].DistanciaEntrePontos(pontos[2])) {
+                return "Eh Escaleno";
+            }
+        }else{
+            return "Nao eh possivel verificar pois os pontos sao Co-lineares.";
         }
-
         return null;
     }
 }
+

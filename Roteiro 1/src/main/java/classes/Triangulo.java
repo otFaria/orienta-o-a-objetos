@@ -49,18 +49,14 @@ public class Triangulo {
          */
         double Determinante = pontos[0].getX() * (pontos[1].getY() - pontos[2].getY()) + pontos[1].getX() * (pontos[2].getY() - pontos[0].getY()) + pontos[2].getX() * (pontos[0].getY() - pontos[1].getY());
 
-        if (Determinante == 0) {
-            return true;
-        }else{
-            return false;
-        }
+       return Determinante == 0;
     }
 
     public boolean PerimetroDoTriangulo() {
 
         double Perimetro = 0.0;
         
-        if(VerificaColinear()){
+        if(!VerificaColinear()){
             Perimetro = pontos[0].DistanciaEntrePontos(pontos[1]) + pontos[1].DistanciaEntrePontos(pontos[2]) + pontos[2].DistanciaEntrePontos(pontos[0]);
             System.out.println("O perimetro do triangulo eh: " + Perimetro);
             return true;
@@ -73,12 +69,15 @@ public class Triangulo {
 
     public String Tipo() {
         if(!VerificaColinear()){
-            if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
+            
+//          System.out.println(pontos[0].DistanciaEntrePontos(pontos[1]));
+//          System.out.println(pontos[1].DistanciaEntrePontos(pontos[2]));
+//          System.out.println(pontos[2].DistanciaEntrePontos(pontos[0]));
+            
+            if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[2].DistanciaEntrePontos(pontos[0]) ) {
                 return "O tringulo e equilatero.";
-
             } else if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) || pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2]) || pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
                 return "Eh Isosceles";
-
             }else if (pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[0].DistanciaEntrePontos(pontos[2])) {
                 return "Eh Escaleno";
             }

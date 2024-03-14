@@ -9,6 +9,8 @@ public class Mavenproject1{
         
         P1.Preencher();
         
+        P1.PerimetroDoTriangulo();
+        
         System.out.println(P1.Tipo());
     }
 }

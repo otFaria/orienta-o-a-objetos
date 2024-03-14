@@ -22,6 +22,7 @@ public class Ponto{
     }
    
    public double DistanciaEntrePontos(Ponto A){
+       
        double X = A.getX() - this.X;
        double Y = A.getY() - this.Y;
        

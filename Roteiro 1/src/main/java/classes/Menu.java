@@ -2,20 +2,25 @@ package classes;
 import java.util.Scanner;
 
 public class Menu {
-    public static void main(String[] args) {
+    public static void Menu() {
+
+        System.out.println("Escolha uma opção:");
+        System.out.println("1. Calcular área de um triângulo");
+        System.out.println("2. Verificar tipo de triângulo");
+        System.out.println("3. Calcular perímetro de um triângulo");
+        System.out.println("4. Calcular área de um quadrado");
+        System.out.println("5. Calcular perímetro de um quadrado");
+        System.out.println("6. Verificar tipo de quadrado");
+        System.out.println("7. Sair");
+        System.out.print("Selecione a opcao: ");
+    }
+    
+    public static void Implementacao{
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
-            System.out.println("Escolha uma opção:");
-            System.out.println("1. Calcular área de um triângulo");
-            System.out.println("2. Verificar tipo de triângulo");
-            System.out.println("3. Calcular perímetro de um triângulo");
-            System.out.println("4. Calcular área de um quadrado");
-            System.out.println("5. Calcular perímetro de um quadrado");
-            System.out.println("6. Verificar tipo de quadrado");
-            System.out.println("7. Sair");
-
+            Menu();
             opcao = scanner.nextInt();
 
             switch (opcao) {

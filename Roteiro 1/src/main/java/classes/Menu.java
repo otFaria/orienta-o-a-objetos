@@ -15,7 +15,7 @@ public class Menu {
         System.out.print("Selecione a opcao: ");
     }
     
-    public static void Implementacao{
+    public static void Implementacao(){
         Scanner scanner = new Scanner(System.in);
         int opcao;
 

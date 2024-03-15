@@ -17,18 +17,8 @@ public class Triangulo {
 
     public double Area() {
 
-        //Formula de Heron
         double Area = 0.0;
-
-        double a, b, c, s;
-        a = Math.sqrt(Math.pow(pontos[1].getX() - pontos[0].getX(), 2) + Math.pow(pontos[1].getY() - pontos[0].getY(), 2));
-        b = Math.sqrt(Math.pow(pontos[2].getX() - pontos[1].getX(), 2) + Math.pow(pontos[2].getY() - pontos[1].getY(), 2));
-        c = Math.sqrt(Math.pow(pontos[0].getX() - pontos[2].getX(), 2) + Math.pow(pontos[0].getY() - pontos[2].getY(), 2));
-
-        s = ((a + b + c) / 2);
-
-        Area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-
+        Area = (Math.abs(Determinante())/2);
         return Area;
     }
 
@@ -40,6 +30,11 @@ public class Triangulo {
             pontos[i].Preencher();
         }
     }
+    
+    private double Determinante(){
+       double Determinante = pontos[0].getX() * (pontos[1].getY() - pontos[2].getY()) + pontos[1].getX() * (pontos[2].getY() - pontos[0].getY()) + pontos[2].getX() * (pontos[0].getY() - pontos[1].getY()); 
+       return Determinante;
+    }
 
     public boolean VerificaColinear() {
         /*
@@ -47,9 +42,13 @@ public class Triangulo {
         |x2 y2|
         |x3 y2|
          */
-        double Determinante = pontos[0].getX() * (pontos[1].getY() - pontos[2].getY()) + pontos[1].getX() * (pontos[2].getY() - pontos[0].getY()) + pontos[2].getX() * (pontos[0].getY() - pontos[1].getY());
-
-       return Determinante == 0;
+        
+        double det = Determinante();
+        
+        if(det == 0.0)
+            return true;
+        else
+            return false;
     }
 
     public boolean PerimetroDoTriangulo() {
@@ -58,32 +57,41 @@ public class Triangulo {
         
         if(!VerificaColinear()){
             Perimetro = pontos[0].DistanciaEntrePontos(pontos[1]) + pontos[1].DistanciaEntrePontos(pontos[2]) + pontos[2].DistanciaEntrePontos(pontos[0]);
-            System.out.println("O perimetro do triangulo eh: " + Perimetro);
+            System.out.println("O perímetro do triangulo é: " + Perimetro);
             return true;
         }else{
-            System.out.println("Nao é um triangulo.");
+            System.out.println("Não é um triangulo.");
             return false;
         }
         
     }
 
     public String Tipo() {
+        
+        
         if(!VerificaColinear()){
+            double AB,BC,CA,AC;
+            
+            AB = pontos[0].DistanciaEntrePontos(pontos[1]);
+            BC = pontos[1].DistanciaEntrePontos(pontos[2]);
+            CA = pontos[2].DistanciaEntrePontos(pontos[0]);
+            AC = pontos[0].DistanciaEntrePontos(pontos[1]);
             
 //          System.out.println(pontos[0].DistanciaEntrePontos(pontos[1]));
 //          System.out.println(pontos[1].DistanciaEntrePontos(pontos[2]));
 //          System.out.println(pontos[2].DistanciaEntrePontos(pontos[0]));
             
-            if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[2].DistanciaEntrePontos(pontos[0]) ) {
-                return "O tringulo e equilatero.";
-            } else if (pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[1].DistanciaEntrePontos(pontos[2]) || pontos[0].DistanciaEntrePontos(pontos[1]) == pontos[0].DistanciaEntrePontos(pontos[2]) || pontos[1].DistanciaEntrePontos(pontos[2]) == pontos[0].DistanciaEntrePontos(pontos[2])) {
-                return "Eh Isosceles";
-            }else if (pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[1].DistanciaEntrePontos(pontos[2]) && pontos[0].DistanciaEntrePontos(pontos[1]) != pontos[0].DistanciaEntrePontos(pontos[2])) {
-                return "Eh Escaleno";
+            if (AB == BC && BC == CA ) {
+                return "O tringulo e equilatero.\n\n";
+            } else if (AB == BC || AC == AC || BC == AC){
+                return "É Isosceles\n\n";
+            }else if (AB != BC && AB != AC) {
+                return "É Escaleno\n\n";
             }
         }else{
-            return "Nao eh possivel verificar pois os pontos sao Co-lineares.";
+            return "\n\nNão é possivel verificar pois os pontos são Co-lineares.\n\n";
         }
+        
         return null;
     }
 }

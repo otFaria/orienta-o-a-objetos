@@ -34,7 +34,7 @@ public class Quadrado {
         double altura = Math.sqrt(Math.pow(pontos[2].getX() - pontos[1].getX(), 2) + Math.pow(pontos[2].getY() - pontos[1].getY(), 2));
         double area = base * altura;
         
-        System.out.println("Area = " + area + "m².");
+        System.out.println("Area= " + area + "m².");
     }
     
     public void tipos(){
@@ -43,7 +43,7 @@ public class Quadrado {
         double l3 = Math.sqrt(Math.pow(pontos[3].getX() - pontos[2].getX(), 2) + Math.pow(pontos[3].getY() - pontos[2].getY(), 2));
         double l4 = Math.sqrt(Math.pow(pontos[0].getX() - pontos[3].getX(), 2) + Math.pow(pontos[0].getY() - pontos[3].getY(), 2));
 
-        System.out.println(l1 + " " + " " + l2 + " " + l3 + " " + l4);
+        System.out.println(l1 + " " + l2 + " " + l3 + " " + l4);
         if(l1 == l2 && l2 == l3 && l3 == l4 && l4 == l1)
             System.out.println("É um quadrado");
         else
@@ -51,6 +51,7 @@ public class Quadrado {
     }
     
     public void perimetro(){
+        
         double l1 = Math.sqrt(Math.pow(pontos[1].getX() - pontos[0].getX(), 2) + Math.pow(pontos[1].getY() - pontos[0].getY(), 2));
         double l2 = Math.sqrt(Math.pow(pontos[2].getX() - pontos[1].getX(), 2) + Math.pow(pontos[2].getY() - pontos[1].getY(), 2));
         double l3 = Math.sqrt(Math.pow(pontos[3].getX() - pontos[2].getX(), 2) + Math.pow(pontos[3].getY() - pontos[2].getY(), 2));

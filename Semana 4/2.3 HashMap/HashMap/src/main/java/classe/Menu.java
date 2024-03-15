@@ -28,7 +28,6 @@ public class Menu {
         int opcao = 0;
         
         do{
-            System.out.println("");
             Menu();
             opcao = ler.nextInt();
             switch (opcao) {

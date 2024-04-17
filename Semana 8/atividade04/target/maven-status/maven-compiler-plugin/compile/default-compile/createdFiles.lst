@@ -1,0 +1,5 @@
+classes\Carro.class
+com\mycompany\atividade04\Atividade04.class
+classes\FilePersistence.class
+classes\GerenteCarro.class
+classes\SerializadorCSVCarros.class

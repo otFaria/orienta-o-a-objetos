@@ -1,0 +1,5 @@
+com\mycompany\atividade03\Atividade03.class
+classes\Animal.class
+classes\GerenciadorAnimal.class
+classes\SerializadorCSVAnimal.class
+classes\FilePersistence.class

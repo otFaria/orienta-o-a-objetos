@@ -1,0 +1,5 @@
+classes\Produto.class
+com\mycompany\atividade02\Atividade02.class
+classes\SerializadorCSVProduto.class
+classes\FilePersistence.class
+classes\GerenciadorDeProdutos.class

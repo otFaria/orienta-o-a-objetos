@@ -1,0 +1,23 @@
+
+[
+    {"matricula": 1, "nome": "Maria Oliveira", "sexo": "Feminino", "idade": 18, "ano_ingresso": 2020},
+    {"matricula": 2, "nome": "João Santos", "sexo": "Masculino", "idade": 19, "ano_ingresso": 2019},
+    {"matricula": 3, "nome": "Amanda Costa", "sexo": "Feminino", "idade": 20, "ano_ingresso": 2021},
+    {"matricula": 4, "nome": "Pedro Silva", "sexo": "Masculino", "idade": 21, "ano_ingresso": 2022},
+    {"matricula": 5, "nome": "Juliana Souza", "sexo": "Feminino", "idade": 22, "ano_ingresso": 2018},
+    {"matricula": 6, "nome": "Lucas Almeida", "sexo": "Masculino", "idade": 23, "ano_ingresso": 2017},
+    {"matricula": 7, "nome": "Gabriela Santos", "sexo": "Feminino", "idade": 24, "ano_ingresso": 2023},
+    {"matricula": 8, "nome": "Rafael Oliveira", "sexo": "Masculino", "idade": 25, "ano_ingresso": 2020},
+    {"matricula": 9, "nome": "Carolina Lima", "sexo": "Feminino", "idade": 26, "ano_ingresso": 2019},
+    {"matricula": 10, "nome": "Thiago Pereira", "sexo": "Masculino", "idade": 27, "ano_ingresso": 2021},
+    {"matricula": 11, "nome": "Mariana Costa", "sexo": "Feminino", "idade": 28, "ano_ingresso": 2022},
+    {"matricula": 12, "nome": "Fernando Santos", "sexo": "Masculino", "idade": 29, "ano_ingresso": 2018},
+    {"matricula": 13, "nome": "Larissa Souza", "sexo": "Feminino", "idade": 30, "ano_ingresso": 2017},
+    {"matricula": 14, "nome": "Gustavo Silva", "sexo": "Masculino", "idade": 31, "ano_ingresso": 2023},
+    {"matricula": 15, "nome": "Vanessa Oliveira", "sexo": "Feminino", "idade": 32, "ano_ingresso": 2020},
+    {"matricula": 16, "nome": "Marcelo Lima", "sexo": "Masculino", "idade": 33, "ano_ingresso": 2019},
+    {"matricula": 17, "nome": "Camila Pereira", "sexo": "Feminino", "idade": 34, "ano_ingresso": 2021},
+    {"matricula": 18, "nome": "Guilherme Costa", "sexo": "Masculino", "idade": 35, "ano_ingresso": 2022},
+    {"matricula": 19, "nome": "Isabela Almeida", "sexo": "Feminino", "idade": 36, "ano_ingresso": 2018},
+    {"matricula": 20, "nome": "Renan Santos", "sexo": "Masculino", "idade": 37, "ano_ingresso": 2017}
+]

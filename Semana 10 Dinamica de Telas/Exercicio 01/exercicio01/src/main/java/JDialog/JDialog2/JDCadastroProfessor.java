@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package JDialog.JDialog2;
 
 import classes.Professor;
@@ -14,18 +10,21 @@ import javax.swing.JOptionPane;
  */
 public class JDCadastroProfessor extends javax.swing.JDialog {
 
-    private Professor ministrante = new Professor();
+    private Professor ministrante;
     private GerenteProfessor professores = new GerenteProfessor();
     
     /**
      * Creates new form JDCadastroProfessor
+     * @param parent
+     * @param modal
+     * @param gerente
+     * @param P1
      */
-    public JDCadastroProfessor(java.awt.Frame parent, boolean modal, GerenteProfessor gerente, Professor P1) {
+    public JDCadastroProfessor(java.awt.Frame parent, boolean modal, GerenteProfessor gerente) {
         super(parent, modal);
         initComponents();
         this.txtProfessores.setEnabled(false);
         this.txtProfessores.setText(gerente.toString());
-        this.ministrante = P1;
         this.professores = gerente;
     }
 
@@ -84,11 +83,11 @@ public class JDCadastroProfessor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        this.ministrante = this.professores.Busca_Professor(Integer.parseInt(txtCPF.getText()));
-        JOptionPane.showMessageDialog(this, ministrante);
-        if (ministrante == null) {
+        this.ministrante = this.professores.buscarProfessor(Integer.parseInt(txtCPF.getText()));
+        if (getMinistrante() == null) {
             JOptionPane.showMessageDialog(this, "Professor ministrante não encontrado.");
         }else{
+            JOptionPane.showMessageDialog(this, "Professor adicionado com sucesso.");
             this.dispose();
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -103,4 +102,11 @@ public class JDCadastroProfessor extends javax.swing.JDialog {
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextArea txtProfessores;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the ministrante
+     */
+    public Professor getMinistrante() {
+        return ministrante;
+    }
 }

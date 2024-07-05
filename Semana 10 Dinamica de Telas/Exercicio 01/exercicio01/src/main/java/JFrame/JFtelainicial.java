@@ -10,7 +10,7 @@ import JDialog.JDProfessor;
 import gerente.GerenteAluno;
 import gerente.GerenteDisciplina;
 import gerente.GerenteProfessor;
-import javax.swing.JOptionPane;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -25,8 +25,10 @@ public class JFtelainicial extends javax.swing.JFrame {
     /**
      * Creates new form JFtelainicial
      */
-    public JFtelainicial() {
+    public JFtelainicial() throws FileNotFoundException {
         initComponents();
+        this.alunos.carregarDoArquivo("ListagemAlunos.json");
+        this.professor.carregarDoArquivo("ListagemProfessores.json");
     }
 
     /**

@@ -2,6 +2,9 @@ package JDialog;
 
 import classes.Aluno;
 import gerente.GerenteAluno;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class JDAluno extends javax.swing.JDialog {

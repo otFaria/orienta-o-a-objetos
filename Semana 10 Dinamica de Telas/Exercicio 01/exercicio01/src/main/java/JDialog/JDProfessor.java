@@ -274,7 +274,7 @@ public class JDProfessor extends javax.swing.JDialog {
         this.edicao = true;
         String index_escolhido = JOptionPane.showInputDialog("Informe o CPF do professor a ser editado.");
         int CPF_Professor = Integer.parseInt(index_escolhido);
-        P1 = this.professores.Busca_Professor(CPF_Professor);
+        P1 = this.professores.buscarProfessor(CPF_Professor);
         
         if(P1 != null){
             this.Habilitar_Campos_Edicao(true);
@@ -301,7 +301,7 @@ public class JDProfessor extends javax.swing.JDialog {
         //Convertendo de String para int
         int CPF = Integer.parseInt(JOptionPane.showInputDialog("Me informe o CPF do professor para ser excluido"));
         
-        Professor localizacao_list = this.professores.Busca_Professor(CPF);
+        Professor localizacao_list = this.professores.buscarProfessor(CPF);
         
         if (localizacao_list != null) {
             this.professores.getProfessores().remove(localizacao_list);
@@ -320,7 +320,7 @@ public class JDProfessor extends javax.swing.JDialog {
         
         if (edicao == false){
            this.Coletar_Campos(Teste);
-           Professor P1 = professores.Busca_Professor(Teste.getCpf());
+           Professor P1 = professores.buscarProfessor(Teste.getCpf());
            if (P1 == null){
                 professores.Adiciona_Professor(Teste);
                 TextAreaImprimir.setText(professores.toString());

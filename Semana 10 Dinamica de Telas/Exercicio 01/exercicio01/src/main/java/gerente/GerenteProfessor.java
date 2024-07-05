@@ -1,8 +1,12 @@
 package gerente;
 
 import classes.Professor;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import serializador.FilePersistence;
+import serializador.SerializadorJson;
 
 public class GerenteProfessor {
     private List<Professor> professores;
@@ -12,7 +16,7 @@ public class GerenteProfessor {
     }
     
     public void Adiciona_Professor(Professor P1){
-        if (Busca_Professor(P1.getCpf()) == null) {
+        if (buscarProfessor(P1.getCpf()) == null) {
             professores.add(P1);
         }else{
             System.out.println("Já existe este professor.");
@@ -20,7 +24,7 @@ public class GerenteProfessor {
     }
     
     public void Remover(int cpf){
-        Professor remover = Busca_Professor(cpf);
+        Professor remover = buscarProfessor(cpf);
         
         if(remover != null){
             professores.remove(remover);
@@ -31,7 +35,7 @@ public class GerenteProfessor {
     }
     
     public void Atualizar(int cpf, Professor novo_professor){
-        Professor atualizar = Busca_Professor(cpf);
+        Professor atualizar = buscarProfessor(cpf);
         if(atualizar != null){
             int index = professores.indexOf(atualizar);
             professores.set(index,novo_professor);
@@ -40,7 +44,7 @@ public class GerenteProfessor {
         }
     }
     
-    public Professor Busca_Professor(int cpf){
+    public Professor buscarProfessor(int cpf){
         
         for(Professor P1 : professores){
             if (P1.getCpf() == cpf){
@@ -51,6 +55,27 @@ public class GerenteProfessor {
         return null;
     }
 
+    public void salvarNoArquivo(String caminhoDoArquivo) throws IOException {
+        //Serializando XML
+        SerializadorJson serializador_jason = new SerializadorJson();
+        String jsonData = serializador_jason.toJson_Professor(professores);
+        
+        FilePersistence filePersistence = new FilePersistence();
+        filePersistence.SaveToFile(jsonData, caminhoDoArquivo);
+        System.out.println("Produtos salvos com sucesso em " + caminhoDoArquivo);
+    }
+
+    public void carregarDoArquivo(String caminhoDoArquivo) throws FileNotFoundException {
+        FilePersistence filePersistence = new FilePersistence();
+        String jsonData = filePersistence.LoadFromFile(caminhoDoArquivo);
+
+        //Desserializando JSON
+        SerializadorJson desserializador_json = new SerializadorJson();
+        this.professores = desserializador_json.fromJson_Professores(jsonData);
+
+        System.out.println("Produtos carregados com sucesso de " + caminhoDoArquivo);
+    }
+    
     @Override
     public String toString() {
         return "Professores = \n" + professores;

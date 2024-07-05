@@ -4,7 +4,9 @@
  */
 package JDialog.JDialog2;
 
+import classes.Aluno;
 import gerente.GerenteAluno;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,13 +14,21 @@ import gerente.GerenteAluno;
  */
 public class JDCadastroAluno extends javax.swing.JDialog {
 
-    private GerenteAluno alunos;
+    private GerenteAluno alunos_geral;
+    private GerenteAluno alunos_adicionados;
     
-    public JDCadastroAluno(java.awt.Frame parent, boolean modal, GerenteAluno gerente_aluno) {
+    public JDCadastroAluno(java.awt.Frame parent, boolean modal, GerenteAluno gerente_alunos) {
         super(parent, modal);
         initComponents();
         
-        this.alunos = gerente_aluno;
+        //Gerente alunos, todos os alunos da escola.
+        this.alunos_geral = gerente_alunos;
+        
+        //Gerente alunos que serão adicionados a disciplina.
+        this.alunos_adicionados = new GerenteAluno();
+        
+        this.TextAreaAlunos.setEnabled(false);
+        this.TextAreaAlunos.setText(gerente_alunos.toString());
     }
 
     /**
@@ -30,27 +40,91 @@ public class JDCadastroAluno extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        edtAluno = new javax.swing.JTextField();
+        btnAdicionar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextAreaAlunos = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        TextAreaAlunos.setColumns(20);
+        TextAreaAlunos.setRows(5);
+        jScrollPane1.setViewportView(TextAreaAlunos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(edtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(109, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        
+        Aluno A1 = this.alunos_geral.Busca_Aluno(Integer.parseInt(edtAluno.getText()));
+        
+        if (A1 == null) {
+            JOptionPane.showMessageDialog(this, "Erro: Aluno não encontrado.");
+        }else{
+            if (this.alunos_adicionados.Busca_Aluno(A1.getMatricula()) == null) {
+                edtAluno.setText("");
+                JOptionPane.showMessageDialog(this, "Aluno Adicionado com Sucesso.");
+                alunos_adicionados.AdicionarAlunos(A1);
+            }else{
+                JOptionPane.showMessageDialog(this, "Este aluno já está adicionado a está disciplina.");
+                alunos_adicionados.AdicionarAlunos(A1);
+                
+            }
+        }
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
+
+    public GerenteAluno getAlunos_adicionados() {
+        return alunos_adicionados;
+    }
+
+    public void setAlunos_adicionados(GerenteAluno alunos_adicionados) {
+        this.alunos_adicionados = alunos_adicionados;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TextAreaAlunos;
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JTextField edtAluno;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

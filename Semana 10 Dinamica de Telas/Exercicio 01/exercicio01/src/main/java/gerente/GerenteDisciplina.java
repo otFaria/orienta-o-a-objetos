@@ -1,8 +1,12 @@
 package gerente;
 
 import classes.Disciplina;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import serializador.FilePersistence;
+import serializador.SerializadorJson;
 
 public class GerenteDisciplina {
     
@@ -52,6 +56,27 @@ public class GerenteDisciplina {
             }
         }
         return null;
+    }
+    
+    public void salvarNoArquivo(String caminhoDoArquivo) throws IOException {
+        //Serializando XML
+        SerializadorJson serializador_jason = new SerializadorJson();
+        String jsonData = serializador_jason.toJson_Disciplina(disciplinas);
+        
+        FilePersistence filePersistence = new FilePersistence();
+        filePersistence.SaveToFile(jsonData, caminhoDoArquivo);
+        System.out.println("Produtos salvos com sucesso em " + caminhoDoArquivo);
+    }
+
+    public void carregarDoArquivo(String caminhoDoArquivo) throws FileNotFoundException {
+        FilePersistence filePersistence = new FilePersistence();
+        String jsonData = filePersistence.LoadFromFile(caminhoDoArquivo);
+
+        //Desserializando JSON
+        SerializadorJson desserializador_json = new SerializadorJson();
+        this.disciplinas = desserializador_json.fromJson_Disciplina(jsonData);
+
+        System.out.println("Produtos carregados com sucesso de " + caminhoDoArquivo);
     }
 
     @Override

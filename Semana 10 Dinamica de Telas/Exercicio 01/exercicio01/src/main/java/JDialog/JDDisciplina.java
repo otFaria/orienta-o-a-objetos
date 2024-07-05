@@ -23,6 +23,8 @@ public class JDDisciplina extends javax.swing.JDialog {
    private GerenteAluno alunos;
    private GerenteDisciplina disciplina;
    private Professor ministrante;
+   
+   private GerenteAluno alunos_adicionar_disciplina;
          
     public JDDisciplina(java.awt.Frame parent, boolean modal, GerenteProfessor gerente_prof, GerenteDisciplina gerente_disciplina, GerenteAluno gerente_aluno){
         
@@ -31,19 +33,16 @@ public class JDDisciplina extends javax.swing.JDialog {
         this.edicao = false;
         
         //Instanciando os Gerentes
-        
         this.professores = new GerenteProfessor();
         this.alunos = new GerenteAluno();
         this.disciplina = new GerenteDisciplina();
               
         //
-        
         this.professores = gerente_prof;
         this.alunos = gerente_aluno;
         this.disciplina = gerente_disciplina;
         
         //
-        
         this.TextAreaImprimir.setText(this.disciplina.toString());
         
         //
@@ -51,6 +50,10 @@ public class JDDisciplina extends javax.swing.JDialog {
         this.Limpar_Campos();
         this.Habilitar_Campos(false);
         
+        //
+        
+       btnProfessor.setEnabled(false);
+       btnAluno.setEnabled(false);
         
     }
 
@@ -172,7 +175,7 @@ public class JDDisciplina extends javax.swing.JDialog {
         });
 
         btnAluno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAluno.setText("Adicionar Aluno a Disciplina");
+        btnAluno.setText("Adicionar Alunos a Disciplina");
         btnAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlunoActionPerformed(evt);
@@ -234,7 +237,7 @@ public class JDDisciplina extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(edtHorario, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                            .addComponent(edtHorario)
                             .addComponent(jblHorario))
                         .addGap(45, 45, 45))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -285,15 +288,42 @@ public class JDDisciplina extends javax.swing.JDialog {
         this.Habilitar_Campos(true);
         this.Limpar_Campos();
         this.edicao = false;
+        this.ministrante = new Professor();
+        this.alunos_adicionar_disciplina = new GerenteAluno();
+        
+        btnProfessor.setEnabled(true);
+        btnAluno.setEnabled(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.Limpar_Campos();
         this.Habilitar_Campos(false);
         this.edicao = false;
+        
+        // 
+        
+        btnProfessor.setEnabled(false);
+        btnAluno.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        
+        btnProfessor.setEnabled(false);
+        btnAluno.setEnabled(false);
+        
+        Disciplina D1 = new Disciplina();
+        
+        String nome_disciplina_excluir = JOptionPane.showInputDialog("Me informe o nome da disciplina para ser excluida.");
+        
+        D1 = disciplina.Buscar_Disciplina(nome_disciplina_excluir);
+        
+        if (D1 == null) {
+            JOptionPane.showMessageDialog(this, "Disciplina não encontrada.");
+        }else{
+            disciplina.Remover_Disciplina(nome_disciplina_excluir);
+            JOptionPane.showMessageDialog(this, "Disciplina Removida com Sucesso.");
+            TextAreaImprimir.setText(disciplina.toString());
+        }
         
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -304,22 +334,22 @@ public class JDDisciplina extends javax.swing.JDialog {
         
         
         if (edicao == false) {
-            JOptionPane.showMessageDialog(this, ministrante);
+            
+           //Teste
+           
            this.Coletar_Campos(D1);
            verifica = this.disciplina.Buscar_Disciplina(D1.getNome());
             if (verifica != null) {
                 JOptionPane.showMessageDialog(this, "Erro: Já existe uma disciplina com este nome.");
             }else{
                 
-                if (ministrante.getNome().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Adicione um Professor ministrante.");
-                }
-                
                 this.disciplina.Adicionar_Disciplina(D1);
                 JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso.");
                 this.Limpar_Campos();
                 this.Habilitar_Campos(false);
                 this.TextAreaImprimir.setText(this.disciplina.toString());
+                btnProfessor.setEnabled(false);
+                btnAluno.setEnabled(false);
             }
         }else{
             
@@ -330,11 +360,16 @@ public class JDDisciplina extends javax.swing.JDialog {
     
     private void btnProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfessorActionPerformed
         this.ministrante = new Professor();
-        JDCadastroProfessor tela_professor = new JDCadastroProfessor(new Frame(), true, professores, ministrante);
+        JDCadastroProfessor tela_professor = new JDCadastroProfessor(new Frame(), true, professores);
         tela_professor.setVisible(true);
+        this.ministrante = tela_professor.getMinistrante();
+        
     }//GEN-LAST:event_btnProfessorActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+        btnProfessor.setEnabled(false);
+        btnAluno.setEnabled(false);
         
     }//GEN-LAST:event_btnEditarActionPerformed
     
@@ -343,6 +378,7 @@ public class JDDisciplina extends javax.swing.JDialog {
     private void btnAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoActionPerformed
         JDCadastroAluno tela_aluno = new JDCadastroAluno(new Frame() , true, alunos);
         tela_aluno.setVisible(true);
+        this.alunos_adicionar_disciplina = tela_aluno.getAlunos_adicionados();
     }//GEN-LAST:event_btnAlunoActionPerformed
 
     private void edtHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtHorarioActionPerformed
@@ -369,6 +405,14 @@ public class JDDisciplina extends javax.swing.JDialog {
         D1.setNome(edtNome.getText());
         D1.setSemestre(Integer.parseInt(edtSemestre.getText()));
         D1.setHora(edtHorario.getText());
+        
+        if (ministrante != null){
+            D1.setMinistrante(ministrante);
+        }
+        
+        if (this.alunos_adicionar_disciplina != null){
+            D1.setAlunos(alunos_adicionar_disciplina);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,9 +2,13 @@ package gerente;
 
 import JDialog.JDAluno;
 import classes.Aluno;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import serializador.FilePersistence;
+import serializador.SerializadorJson;
 
 public class GerenteAluno {
     private List<Aluno> alunos;
@@ -58,6 +62,28 @@ public class GerenteAluno {
             }
             return null;
     }
+    
+    public void salvarNoArquivo(String caminhoDoArquivo) throws IOException {
+        //Serializando XML
+        SerializadorJson serializador_jason = new SerializadorJson();
+        String jsonData = serializador_jason.toJson_Aluno(alunos);
+        
+        FilePersistence filePersistence = new FilePersistence();
+        filePersistence.SaveToFile(jsonData, caminhoDoArquivo);
+        System.out.println("Produtos salvos com sucesso em " + caminhoDoArquivo);
+    }
+
+    public void carregarDoArquivo(String caminhoDoArquivo) throws FileNotFoundException {
+        FilePersistence filePersistence = new FilePersistence();
+        String jsonData = filePersistence.LoadFromFile(caminhoDoArquivo);
+
+        //Desserializando JSON
+        SerializadorJson desserializador_json = new SerializadorJson();
+        this.alunos = desserializador_json.fromJson_alunos(jsonData);
+
+        System.out.println("Produtos carregados com sucesso de " + caminhoDoArquivo);
+    }
+
 
     @Override
     public String toString() {

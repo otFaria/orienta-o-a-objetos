@@ -1,0 +1,6 @@
+classes\ServicoLog.class
+classes\ArquivoLogStorage.class
+com\mycompany\mavenproject1\Mavenproject1.class
+classes\ConsoleLogStorage.class
+classes\FilePersistence.class
+Interfaces\ILogStorage.class

@@ -1,0 +1,5 @@
+classes\Real_Para_Dolar.class
+classes\Dolar_Para_Real.class
+com\mycompany\mavenproject1\Mavenproject1.class
+classes\ServicoFinanceiro.class
+interfaces\IConversorMoeda.class
